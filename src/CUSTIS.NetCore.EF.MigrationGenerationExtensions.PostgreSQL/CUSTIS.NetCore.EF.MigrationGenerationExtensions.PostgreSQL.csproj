@@ -1,8 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-      <Description>Lightweight implementation of the Outbox pattern, which makes it available to send messages only when DB transaction is successfully committed.</Description>
-    <PackageDescription>Lightweight implementation of the Outbox pattern, which makes it available to send messages only when DB transaction is successfully committed.</PackageDescription>
+      <Description>Creates and updates database objects (views, synonyms, stored procedures, etc) from SQL code.</Description>
+    <PackageDescription>Creates and updates database objects (views, synonyms, stored procedures, etc) from SQL code.</PackageDescription>
   </PropertyGroup>
 
   <ItemGroup>

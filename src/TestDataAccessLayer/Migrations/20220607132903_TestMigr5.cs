@@ -1,4 +1,4 @@
-﻿using CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects;
+using CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TestDataAccessLayer.Migrations
@@ -13,7 +13,6 @@ namespace TestDataAccessLayer.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-
         }
     }
 }

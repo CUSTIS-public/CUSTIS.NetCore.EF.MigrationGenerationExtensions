@@ -50,6 +50,5 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.ObjectSources
                 yield return new(sqlObject.ResourceName, text);
             }
         }
-
     }
 }
