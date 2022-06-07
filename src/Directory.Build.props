@@ -4,8 +4,8 @@
 
 <Project>
     <PropertyGroup>
-        <RepositoryUrl>https://github.com/CUSTIS-public/todo SMARTMTO-1593</RepositoryUrl>
-        <PackageProjectUrl>https://github.com/CUSTIS-public/todo SMARTMTO-1593</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/CUSTIS-public/CUSTIS.NetCore.EF.MigrationGenerationExtensions</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/CUSTIS-public/CUSTIS.NetCore.EF.MigrationGenerationExtensions</PackageProjectUrl>
         <RepositoryType>git</RepositoryType>
         <Version>1.0.0</Version>
         <Authors>ishatalkin@custis.ru</Authors>
