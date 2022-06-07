@@ -1,0 +1,5 @@
+# Default behavior to automatically detect text files and normalize line endings (LF) in repo.
+*       text=auto
+
+# Recommended setting for diff engine for C# files
+*.cs    text        diff=csharp

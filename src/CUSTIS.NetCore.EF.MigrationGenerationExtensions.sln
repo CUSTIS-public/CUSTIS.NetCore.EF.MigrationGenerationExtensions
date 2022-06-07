@@ -1,0 +1,58 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31829.152
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{1C048004-EFD9-44F7-BF26-4F6596DEB5B5}"
+	ProjectSection(SolutionItems) = preProject
+		..\.editorconfig = ..\.editorconfig
+		Directory.Build.props = Directory.Build.props
+		CodeAnalysis\GlobalSuppressions.cs = CodeAnalysis\GlobalSuppressions.cs
+		..\README.md = ..\README.md
+		CodeAnalysis\StyleCop.ruleset = CodeAnalysis\StyleCop.ruleset
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL", "CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL.csproj", "{907E5D6B-DB59-4285-97E3-499F3CB0722F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEntryPoint", "TestEntryPoint\TestEntryPoint.csproj", "{10A0A624-ED5A-414C-BCB7-97AB31D41C53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataAccessLayer", "TestDataAccessLayer\TestDataAccessLayer.csproj", "{D408BA8B-B0F4-4E4E-BF85-5895FACCE332}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C8004252-7BF1-4FDC-9E87-043D118EA93B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CUSTIS.NetCore.EF.MigrationGenerationExtensions", "CUSTIS.NetCore.EF.MigrationGenerationExtensions\CUSTIS.NetCore.EF.MigrationGenerationExtensions.csproj", "{ED274B3C-04B6-4794-87F9-D8769A93E49E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{907E5D6B-DB59-4285-97E3-499F3CB0722F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{907E5D6B-DB59-4285-97E3-499F3CB0722F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{907E5D6B-DB59-4285-97E3-499F3CB0722F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{907E5D6B-DB59-4285-97E3-499F3CB0722F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10A0A624-ED5A-414C-BCB7-97AB31D41C53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10A0A624-ED5A-414C-BCB7-97AB31D41C53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10A0A624-ED5A-414C-BCB7-97AB31D41C53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10A0A624-ED5A-414C-BCB7-97AB31D41C53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D408BA8B-B0F4-4E4E-BF85-5895FACCE332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D408BA8B-B0F4-4E4E-BF85-5895FACCE332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D408BA8B-B0F4-4E4E-BF85-5895FACCE332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D408BA8B-B0F4-4E4E-BF85-5895FACCE332}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8004252-7BF1-4FDC-9E87-043D118EA93B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8004252-7BF1-4FDC-9E87-043D118EA93B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8004252-7BF1-4FDC-9E87-043D118EA93B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8004252-7BF1-4FDC-9E87-043D118EA93B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED274B3C-04B6-4794-87F9-D8769A93E49E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED274B3C-04B6-4794-87F9-D8769A93E49E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED274B3C-04B6-4794-87F9-D8769A93E49E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED274B3C-04B6-4794-87F9-D8769A93E49E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {109AB7FE-4DAA-420C-813E-D5F0F7E43687}
+	EndGlobalSection
+EndGlobal

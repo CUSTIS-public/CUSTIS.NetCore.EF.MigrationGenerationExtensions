@@ -1,0 +1,3 @@
+include:
+  - project: devops/include/dotnet
+    file: dotnet-to-oss.yml

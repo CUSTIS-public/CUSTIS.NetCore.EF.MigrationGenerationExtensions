@@ -1,0 +1,64 @@
+<!--
+    Общие свойства всех проектов. Подключаются автоматически к любой новой сборке в составе решения.
+-->
+
+<Project>
+    <PropertyGroup>
+        <RepositoryUrl>https://github.com/CUSTIS-public/todo SMARTMTO-1593</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/CUSTIS-public/todo SMARTMTO-1593</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
+        <Version>1.0.0</Version>
+        <Authors>ishatalkin@custis.ru</Authors>
+        <Company>CUSTIS</Company>
+        <Copyright>Copyright © 2018, 2020-2022 CUSTIS</Copyright>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    </PropertyGroup>
+    <ItemGroup>
+        <None Include="..\..\LICENSE" Pack="true" PackagePath=""/>
+        <None Include="..\..\NOTICE" Pack="true" PackagePath=""/>
+    </ItemGroup>
+    <PropertyGroup>
+        <SolutionDirectory>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), CUSTIS.NetCore.EF.MigrationGenerationExtensions.sln))\</SolutionDirectory>
+    </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <CodeAnalysisRuleSet>$(SolutionDirectory)\CodeAnalysis\StyleCop.ruleset</CodeAnalysisRuleSet>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>UnitTests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <WarningsAsErrors />
+        <DebugType>Full</DebugType>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <WarningsAsErrors />
+        <DebugType>Full</DebugType>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="$(SolutionDirectory)\..\.editorconfig" Visible="false" />
+        <Compile Include="$(SolutionDirectory)\CodeAnalysis\GlobalSuppressions.cs" Visible="false" />
+        <PackageReference Include="StyleCop.Analyzers.Unstable" Version="1.2.0.354">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+
+</Project>

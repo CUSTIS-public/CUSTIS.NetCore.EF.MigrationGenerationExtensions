@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+      <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<PackageReference Include="ApprovalTests" Version="5.7.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.11.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="nunit" Version="3.13.2" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
+  </ItemGroup>
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverage" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL.csproj" />
+      <ProjectReference Include="..\CUSTIS.NetCore.EF.MigrationGenerationExtensions\CUSTIS.NetCore.EF.MigrationGenerationExtensions.csproj" />
+      <ProjectReference Include="..\TestDataAccessLayer\TestDataAccessLayer.csproj" />
+    </ItemGroup>
+</Project>
