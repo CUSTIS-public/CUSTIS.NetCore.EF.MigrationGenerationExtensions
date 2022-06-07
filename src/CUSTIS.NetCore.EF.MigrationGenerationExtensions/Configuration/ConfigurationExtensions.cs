@@ -30,6 +30,13 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
             return options.WithExtension(new DesignTimeServicesExtension());
         }
 
+        /// <summary> Добавить <see cref="DesignTimeServicesExtension"/> </summary>
+        public static DbContextOptions<T> AddDesignTimeServicesExtension<T>(this DbContextOptions<T> options)
+            where T : DbContext
+        {
+            return (DbContextOptions<T>)options.WithExtension(new DesignTimeServicesExtension());
+        }
+
         /// <summary> Replaces services necessary for SQL objects </summary>
         public static void UseCommonSqlObjects(this DbContextOptionsBuilder optionsBuilder)
         {
