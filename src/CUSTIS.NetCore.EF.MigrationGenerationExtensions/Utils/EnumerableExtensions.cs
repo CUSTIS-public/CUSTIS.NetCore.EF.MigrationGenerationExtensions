@@ -14,17 +14,20 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Utils
             return value.Where(v => v is not null).Cast<T>();
         }
 
-        /// <summary> Делит исходную последовательность на 2 группы элементов в зависимости от их класса </summary>
-        public static void DivideByType<TSrc, T1>(
+        /// <summary> Делит исходную последовательность на 3 группы элементов в зависимости от их класса </summary>
+        public static void DivideByType<TSrc, T1, T2>(
             this IEnumerable<TSrc> source,
             out IReadOnlyCollection<T1> first,
+            out IReadOnlyCollection<T2> second,
             out IReadOnlyCollection<TSrc> other)
             where T1 : TSrc
+            where T2 : TSrc
             where TSrc : class
         {
-            var result = source.DivideByType(new[] { typeof(T1) });
+            var result = source.DivideByType(new[] { typeof(T1), typeof(T2) });
             first = (IReadOnlyCollection<T1>)result[0];
-            other = (IReadOnlyCollection<TSrc>)result[1];
+            second = (IReadOnlyCollection<T2>)result[1];
+            other = (IReadOnlyCollection<TSrc>)result[2];
         }
 
         /// <summary> Делит исходную последовательность на группы элементов в зависимости от их класса </summary>

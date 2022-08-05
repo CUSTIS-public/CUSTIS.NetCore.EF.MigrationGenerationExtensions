@@ -11,7 +11,7 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects
     public static class SqlObjectsModelExtensions
     {
         /// <summary> Key of data about sql objects </summary>
-        public const string SqlObjectsData = "___SqlObjects";
+        internal const string SqlObjectsData = "___SqlObjects";
 
         internal static IReadOnlyCollection<SqlObject> GetSqlObjects(this IModel model)
         {

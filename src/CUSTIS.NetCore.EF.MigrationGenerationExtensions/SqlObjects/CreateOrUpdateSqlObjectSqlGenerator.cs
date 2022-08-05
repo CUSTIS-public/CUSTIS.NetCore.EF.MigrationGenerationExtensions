@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects
 {
-    internal sealed class ExecuteSqlGenerator : CustomSqlGeneratorBase<ExecuteSqlOperation>
+    internal sealed class CreateOrUpdateSqlObjectSqlGenerator : CustomSqlGeneratorBase<CreateOrUpdateSqlObjectOperation>
     {
-        protected override void Generate(ExecuteSqlOperation operation, MigrationCommandListBuilder builder)
+        protected override void Generate(CreateOrUpdateSqlObjectOperation operation, MigrationCommandListBuilder builder)
         {
             builder.Append(operation.SqlCode).EndCommand();
         }

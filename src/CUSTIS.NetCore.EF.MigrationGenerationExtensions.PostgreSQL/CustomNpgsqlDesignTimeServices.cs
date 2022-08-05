@@ -1,3 +1,4 @@
+using CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration;
 using CUSTIS.NetCore.EF.MigrationGenerationExtensions.Generation;
 using CUSTIS.NetCore.EF.MigrationGenerationExtensions.Utils;
 using Microsoft.EntityFrameworkCore.Design;

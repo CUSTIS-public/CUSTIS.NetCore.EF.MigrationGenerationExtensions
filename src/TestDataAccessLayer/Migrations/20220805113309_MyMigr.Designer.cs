@@ -10,27 +10,23 @@ using TestDataAccessLayer;
 namespace TestDataAccessLayer.Migrations
 {
     [DbContext(typeof(TestContext))]
-    [Migration("20220607132903_TestMigr5")]
-    partial class TestMigr5
+    [Migration("20220805113309_MyMigr")]
+    partial class MyMigr
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.Model.AddSqlObjects(new SqlObject[]
             {
-                new("test2", "create view name123_2 as select * from t_t")
+                new("my_stored_proc", "stored_proc_code")
                 {
                     Order = 10
                 },
-                new("test1", "create view name123 as select * from t_t")
+                new("v_view_2.sql", "create or replace view migr_ext_tests.name123_2 as select * from migr_ext_tests.my_table;")
                 {
                     Order = 2147483647
                 },
-                new("v_view_2.sql", "create or replace view my_view_2 as\r\nselect * from t_table\r\n;")
-                {
-                    Order = 2147483647
-                },
-                new("v_view.sql", "create or replace view my_view as\r\nselect * from t_table\r\n;")
+                new("v_view.sql", "create or replace view migr_ext_tests.name123 as select * from migr_ext_tests.my_table;")
                 {
                     Order = 2147483647
                 },

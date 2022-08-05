@@ -11,11 +11,15 @@ namespace Custom.DataAccess
                 name: "T_OLD",
                 newName: "T_NEW");
 
-            migrationBuilder.Sql(
-                sql: "create v_view as select");
+            migrationBuilder.CreateOrUpdateSqlObject(
+                name: "v_view",
+                sqlCode: "create v_view as select",
+                order: 20);
 
-            migrationBuilder.Sql(
-                sql: "create v_view_2 as select");
+            migrationBuilder.CreateOrUpdateSqlObject(
+                name: "v_view_2",
+                sqlCode: "create v_view_2 as select",
+                order: 30);
 
             migrationBuilder.RenameTable(
                 name: "T_OLD_2",
@@ -28,11 +32,15 @@ namespace Custom.DataAccess
                 name: "T_OLD",
                 newName: "T_NEW");
 
-            migrationBuilder.Sql(
-                sql: "create v_view as select");
+            migrationBuilder.DropSqlObject(
+                name: "v_view",
+                sqlCode: DROP v_view, // write code to drop object
+                order: 20);
 
-            migrationBuilder.Sql(
-                sql: "create v_view_2 as select");
+            migrationBuilder.DropSqlObject(
+                name: "v_view_2",
+                sqlCode: DROP v_view_2, // write code to drop object
+                order: 30);
 
             migrationBuilder.RenameTable(
                 name: "T_OLD_2",

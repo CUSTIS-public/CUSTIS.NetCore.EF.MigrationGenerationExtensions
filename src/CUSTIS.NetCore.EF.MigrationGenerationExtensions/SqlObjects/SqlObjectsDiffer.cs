@@ -20,16 +20,16 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects
         }
 
         /// <summary> Получает изменения грантов </summary>
-        private IReadOnlyCollection<ExecuteSqlOperation> GetDiff(IReadOnlyCollection<SqlObject> source,
-            IReadOnlyCollection<SqlObject> target)
+        private IReadOnlyCollection<MigrationOperation> GetDiff(IReadOnlyCollection<SqlObject> source, IReadOnlyCollection<SqlObject> target)
         {
             var sourceDic = ToDictionary(source);
             var targetDic = ToDictionary(target);
 
             var newObjs = targetDic.Keys.Except(sourceDic.Keys);
+            var droppedObjs = sourceDic.Keys.Except(targetDic.Keys);
 
             var possibleChanges = sourceDic.Keys.Intersect(targetDic.Keys);
-            var changes = new List<ExecuteSqlOperation>();
+            var changes = new List<CreateOrUpdateSqlObjectOperation>();
             foreach (var key in possibleChanges)
             {
                 var sourceObj = sourceDic[key];
@@ -37,11 +37,12 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects
 
                 if (sourceObj.SqlCode != targetObj.SqlCode)
                 {
-                    changes.Add(new ExecuteSqlOperation(targetObj));
+                    changes.Add(new CreateOrUpdateSqlObjectOperation(targetObj));
                 }
             }
 
-            return newObjs.Select(g => new ExecuteSqlOperation(targetDic[g]))
+            return droppedObjs.Select(g => (MigrationOperation)new DropSqlObjectOperation(sourceDic[g]))
+                .Concat(newObjs.Select(g => new CreateOrUpdateSqlObjectOperation(targetDic[g])))
                 .Concat(changes)
                 .ToArray();
         }

@@ -8,7 +8,7 @@ using CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects;
 namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.ObjectSources
 {
     /// <summary> Helper methods for iterating through assembly resources </summary>
-    public static class AssemblyExtensions
+    internal static class AssemblyExtensions
     {
         /// <summary> Gets resource from assembly by its name </summary>
         public static string GetManifestResourceName(this Assembly assembly, string fileName)

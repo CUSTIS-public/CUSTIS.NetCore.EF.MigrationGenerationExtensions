@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.ObjectSources
 {
     /// <summary> Reads resources as strings </summary>
-    public class AssemblyTextFileReader
+    internal class AssemblyTextFileReader
     {
         private readonly Assembly _assembly;
 

@@ -7,11 +7,16 @@
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
         <WarningsAsErrors />
         <NoWarn>1591</NoWarn>
+        <UserSecretsId>167cac3d-577d-4c68-83d8-55cc9162b0f1</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
       <None Remove="Sql\v_view.sql" />
       <None Remove="Sql\v_view_2.sql" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include=".config\dotnet-tools.json" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +27,8 @@
     <ItemGroup>
       <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.9" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="5.0.9" />
+      <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="5.0.0" />
       <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.7" />
     </ItemGroup>
 

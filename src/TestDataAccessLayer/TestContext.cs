@@ -1,6 +1,7 @@
 using CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL;
 using CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace TestDataAccessLayer
 {
@@ -47,7 +48,11 @@ namespace TestDataAccessLayer
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql($"Paste here some real connection string for testing");
+            var builder = new ConfigurationBuilder()
+                .AddUserSecrets<TestContext>();
+
+            var cfg = builder.Build();
+            optionsBuilder.UseNpgsql(cfg["conn"]);
             optionsBuilder.UseSqlObjects();
         }
     }

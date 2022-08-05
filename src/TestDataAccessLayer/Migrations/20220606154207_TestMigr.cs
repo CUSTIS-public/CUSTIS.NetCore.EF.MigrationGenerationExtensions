@@ -1,4 +1,4 @@
-﻿using CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects;
+using CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -25,10 +25,10 @@ namespace TestDataAccessLayer.Migrations
                 });
 
             migrationBuilder.Sql(
-                sql: "create view name123_2 as select * from t_t");
+                sql: "create view name123_2 as select * from migr_ext_tests.my_table");
 
             migrationBuilder.Sql(
-                sql: "create view name123 as select * from t_t");
+                sql: "create view name123 as select * from migr_ext_tests.my_table");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -38,7 +38,7 @@ namespace UnitTests.SqlObjects
 
             //Assert
             Assert.That(diff, Has.Count.EqualTo(1));
-            Assert.That((diff.ElementAtOrDefault(0) as ExecuteSqlOperation)?.SqlCode, Is.EqualTo(target.SqlCode));
+            Assert.That((diff.ElementAtOrDefault(0) as CreateOrUpdateSqlObjectOperation)?.SqlCode, Is.EqualTo(target.SqlCode));
         }
 
         [Test]
@@ -53,7 +53,22 @@ namespace UnitTests.SqlObjects
 
             //Assert
             Assert.That(diff, Has.Count.EqualTo(1));
-            Assert.That((diff.ElementAtOrDefault(0) as ExecuteSqlOperation)?.SqlCode, Is.EqualTo(target.SqlCode));
+            Assert.That((diff.ElementAtOrDefault(0) as CreateOrUpdateSqlObjectOperation)?.SqlCode, Is.EqualTo(target.SqlCode));
+        }
+
+        [Test]
+        public void GetDiff_DroppedObject_MigrationOperationCreated()
+        {
+            //Arrange
+            var source = new SqlObject("v_view", "select * from t_new");
+            var target = Array.Empty<SqlObject>();
+
+            //Act
+            var diff = _differ.GetDiff(ToModel(source), ToModel(target));
+
+            //Assert
+            Assert.That(diff, Has.Count.EqualTo(1));
+            Assert.That((diff.ElementAtOrDefault(0) as DropSqlObjectOperation)?.Name, Is.EqualTo(source.Name));
         }
 
         private static IRelationalModel ToModel(params SqlObject[] objects)

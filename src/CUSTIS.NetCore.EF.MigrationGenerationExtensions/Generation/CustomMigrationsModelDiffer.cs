@@ -15,13 +15,13 @@ using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Generation
 {
-    /// <summary> Кастомизированный <see cref="MigrationsModelDiffer"/> </summary>
+    /// <summary> Calculates the difference between source and target models </summary>
     [SuppressMessage("Usage", "EF1001:Internal EF Core API usage.")]
     public sealed class CustomMigrationsModelDiffer : MigrationsModelDiffer
     {
         private readonly IReadOnlyCollection<IModelDiffer> _differs;
 
-        /// <summary> Кастомизированный <see cref="MigrationsModelDiffer"/> </summary>
+        /// <summary> Calculates the difference between source and target models </summary>
         public CustomMigrationsModelDiffer(
             IRelationalTypeMappingSource typeMappingSource,
             IMigrationsAnnotationProvider migrationsAnnotations,
@@ -47,10 +47,11 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Generation
         protected override IReadOnlyList<MigrationOperation> Sort(IEnumerable<MigrationOperation> operations,
             DiffContext diffContext)
         {
-            operations.DivideByType<MigrationOperation, ExecuteSqlOperation>(out var sqlOps, out var otherOperations);
+            operations.DivideByType<MigrationOperation, CreateOrUpdateSqlObjectOperation, DropSqlObjectOperation>(out var sqlOps, out var dropOps, out var otherOperations);
 
             return base.Sort(otherOperations, diffContext) // create schema
-                    .Concat(sqlOps.OrderSqlObjects()) // execute sql ops
+                    .Concat(dropOps.OrderSqlObjects()) // drop objects
+                    .Concat(sqlOps.OrderSqlObjects()) // create or update objects
                     .ToList();
         }
 

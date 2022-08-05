@@ -14,7 +14,8 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
         /// <summary> Добавляет сервисы, используемые во внутреннем контейнере DbContext </summary>
         public static void AddDbContextServices(this IServiceCollection services)
         {
-            services.AddSingleton<ICustomSqlGenerator, ExecuteSqlGenerator>();
+            services.AddSingleton<ICustomSqlGenerator, CreateOrUpdateSqlObjectSqlGenerator>();
+            services.AddSingleton<ICustomSqlGenerator, DropSqlObjectSqlGenerator>();
             services.AddSingleton<IModelDiffer, SqlObjectsDiffer>();
         }
 

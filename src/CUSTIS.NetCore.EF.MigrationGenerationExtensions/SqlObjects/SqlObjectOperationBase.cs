@@ -2,19 +2,19 @@ using CUSTIS.NetCore.EF.MigrationGenerationExtensions.Generation;
 
 namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects
 {
-    /// <summary> Operation that executes raw sql </summary>
-    internal class ExecuteSqlOperation : CustomMigrationOperation
+    /// <summary> Operation with SQL object </summary>
+    public class SqlObjectOperationBase : CustomMigrationOperation
     {
-        /// <summary> Operation that executes raw sql </summary>
-        public ExecuteSqlOperation(string name, string sqlCode, int order)
+        /// <summary> Operation with SQL object </summary>
+        public SqlObjectOperationBase(string name, string sqlCode, int order)
         {
             Name = name;
             SqlCode = sqlCode;
             Order = order;
         }
 
-        /// <summary> Operation that executes raw sql </summary>
-        public ExecuteSqlOperation(SqlObject sqlObject)
+        /// <summary> Operation with SQL object </summary>
+        public SqlObjectOperationBase(SqlObject sqlObject)
         {
             SqlCode = sqlObject.SqlCode;
             Name = sqlObject.Name;
@@ -29,12 +29,5 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects
 
         /// <summary> Order in which object is applied </summary>
         public int Order { get; }
-
-        /// <summary>Returns a string that represents the current object.</summary>
-        /// <returns>A string that represents the current object.</returns>
-        public override string ToString()
-        {
-            return $"SqlObject [{Name}]";
-        }
     }
 }
