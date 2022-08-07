@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations.Design;
 
 namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Generation
 {
+    /// <summary> Generates snapshot </summary>
     internal sealed class CustomSnapshotGenerator : CSharpSnapshotGenerator
     {
         private readonly IReadOnlyList<ICustomSnapshotGenerator> _customSnapshotGenerators;
