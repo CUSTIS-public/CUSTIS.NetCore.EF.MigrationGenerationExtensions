@@ -6,15 +6,15 @@ Creates and updates database objects (views, synonyms, stored procedures, etc) f
 
 MigrationGenerationExtensions tracks changes of views, synonyms and other SQL-objects.
 SQL-objects can be stored as C#-code or as embedded resources.
-It automatically generates migrations, when new objects are added, existing updated or deleted.
+The package automatically generates migrations, when new objects are added, existing updated or deleted.
 
 # How to use
 
-* Call `AddDbContextServicesExtension` either in [`Startup.ConfigureServices.AddDbContext`](src\TestEntryPoint\Startup.cs) or in `DbContext.OnConfiguring`
-* Create an empty [`DbDesignTimeServices`](src\TestEntryPoint\DbDesignTimeServices.cs) in your entry point. The class should inherit from `CustomNpgsqlDesignTimeServices`
-* Call `AddDesignTimeServicesExtension` in your [`DesignTimeDbContextFactory`](src\TestDataAccessLayer\DesignTimeDbContextFactory.cs)
+* Call `AddDbContextServicesExtension` either in [`Startup.ConfigureServices.AddDbContext`](src/TestEntryPoint/Startup.cs) or in `DbContext.OnConfiguring`
+* Create an empty [`DbDesignTimeServices`](src/TestEntryPoint/DbDesignTimeServices.cs) in your entry point. The class should inherit from `CustomNpgsqlDesignTimeServices`
+* Call `AddDesignTimeServicesExtension` in your [`DesignTimeDbContextFactory`](src/TestDataAccessLayer/DesignTimeDbContextFactory.cs)
     * There is an opinion, that if you call `AddDbContextServicesExtension` in `DbContext.OnConfiguring`, then `AddDesignTimeServicesExtension` in `DesignTimeDbContextFactory` is not necessary
-* Add SqlObjects to your context in [`DbContext.OnModelCreating`](src\TestDataAccessLayer\TestContext.cs)
+* Add SqlObjects to your context in [`DbContext.OnModelCreating`](src/TestDataAccessLayer/TestContext.cs)
 * Generate migrations as usual
 
 ## Ways to add SqlObjects to the model
