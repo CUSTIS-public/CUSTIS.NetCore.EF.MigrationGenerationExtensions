@@ -2,20 +2,24 @@
 
 [![coverage report](https://git.custis.ru/pub/custis.netcore.ef.migrationgenerationextensions/badges/main/coverage.svg)](https://git.custis.ru/pub/custis.netcore.ef.migrationgenerationextensions/-/commits/main)
 
-Adds views, synonyms, stored procedures, etc. to the EF model. Creates migrations, when those objects are changed.
+Adds views, synonyms, stored procedures, etc. (so-called SQL objects) to the EF model. Creates migrations, when those objects are changed.
+SQL objects are defined as raw SQL in C#-code or in embedded resources. They can be even generated at runtime.
 
-MigrationGenerationExtensions tracks changes of views, synonyms and other SQL-objects.
-SQL-objects can be stored as C#-code or as embedded resources.
-The package automatically generates migrations, when new objects are added, existing updated or deleted.
+All EF Core model-tracking features are supported:
+* When SQL-objects change, migrations are generated.
+* SQL-objects are applied on `DatabaseFacade.EnsureCreated`.
+* Correct script is generated on `dotnet ef migrations script`.
 
 # How to use
 
-* Call `AddDbContextServicesExtension` either in [`Startup.ConfigureServices.AddDbContext`](src/TestEntryPoint/Startup.cs) or in `DbContext.OnConfiguring`
-* Create an empty [`DbDesignTimeServices`](src/TestEntryPoint/DbDesignTimeServices.cs) in your entry point. The class should inherit from `CustomNpgsqlDesignTimeServices`
-* Call `AddDesignTimeServicesExtension` in your [`DesignTimeDbContextFactory`](src/TestDataAccessLayer/DesignTimeDbContextFactory.cs)
-    * There is an opinion, that if you call `AddDbContextServicesExtension` in `DbContext.OnConfiguring`, then `AddDesignTimeServicesExtension` in `DesignTimeDbContextFactory` is not necessary
+* Configure runtime services
+  * Call `AddDbContextServicesExtension` and `UseSqlObjects` either in [`Startup.ConfigureServices.AddDbContext`](src/TestEntryPoint/Startup.cs) or in [`DbContext.OnConfiguring`](src/TestDataAccessLayer/TestContext.cs)
+* Configure designtime services
+  * Create an empty [`DbDesignTimeServices`](src/TestEntryPoint/DbDesignTimeServices.cs) in your entry point. The class should inherit from `CustomNpgsqlDesignTimeServices`
+  * Call `AddDesignTimeServicesExtension` and `UseSqlObjects` in your [`DesignTimeDbContextFactory`](src/TestDataAccessLayer/DesignTimeDbContextFactory.cs)
+    * If you call `AddDbContextServicesExtension` and `UseSqlObjects` in `DbContext.OnConfiguring` while configuring runtime services, then this step is not necessary
 * Add SqlObjects to your context in [`DbContext.OnModelCreating`](src/TestDataAccessLayer/TestContext.cs)
-* Generate migrations as usual
+* Generate migrations / scripts as usual
 
 ## Ways to add SqlObjects to the model
 
@@ -25,17 +29,22 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
     //...
 
     // Add SqlObject directly
+    // Order is used to define the order in which objects are created / updated in DB
     const string Sql = "create or replace view migr_ext_tests.v_view_10 as select * from migr_ext_tests.my_table;";
     modelBuilder.AddSqlObjects(new SqlObject(Name: "v_view_10", SqlCode: Sql) { Order = 10 });
 
     // Add all embedded resources, placed in assembly's "Sql" folder
     // Only *.sql resources are added
+    // There is no way to define order for embedded objects
+    // Use resources' names if you need to sort objects
     modelBuilder.AddSqlObjects(assembly: typeof(Class1).Assembly, folder: "Sql");
 }
 ```
 
 # Known limitations
 - Doesn't drop deleted objects (generates non compilable code, so the developer should write drop-code himself).
+- Only C# is supported
+- Only Postgres SQL is supported, but any other DB can be easily added (use [`CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL`](src/CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL) as an example)
 
 # Testing
 1. Open TestDataAccessLayer folder in terminal
