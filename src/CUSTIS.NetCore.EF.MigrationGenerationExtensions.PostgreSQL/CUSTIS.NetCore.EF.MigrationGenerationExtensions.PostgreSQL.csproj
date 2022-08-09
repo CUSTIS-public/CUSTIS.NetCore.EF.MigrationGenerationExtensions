@@ -1,8 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-      <Description>Creates and updates database objects (views, synonyms, stored procedures, etc) from SQL code.</Description>
-    <PackageDescription>Creates and updates database objects (views, synonyms, stored procedures, etc) from SQL code.</PackageDescription>
+      <Description>Adds views, synonyms, stored procedures, etc. (so-called SQL objects) to the EF model. Creates migrations, when those objects are changed.
+SQL objects are defined as raw SQL in C#-code or in embedded resources. They can be even generated at runtime. 
+For more information refer to https://github.com/CUSTIS-public/CUSTIS.NetCore.EF.MigrationGenerationExtensions</Description>
   </PropertyGroup>
 
   <ItemGroup>
