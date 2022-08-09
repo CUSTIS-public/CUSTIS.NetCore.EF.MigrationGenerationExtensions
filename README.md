@@ -2,7 +2,7 @@
 
 [![coverage report](https://git.custis.ru/pub/custis.netcore.ef.migrationgenerationextensions/badges/main/coverage.svg)](https://git.custis.ru/pub/custis.netcore.ef.migrationgenerationextensions/-/commits/main)
 
-Creates and updates database objects (views, synonyms, stored procedures, etc) from raw SQL code.
+Adds views, synonyms, stored procedures, etc. to the EF model. Creates migrations, when those objects are changed.
 
 MigrationGenerationExtensions tracks changes of views, synonyms and other SQL-objects.
 SQL-objects can be stored as C#-code or as embedded resources.
