@@ -1,6 +1,8 @@
 # CUSTIS.NetCore.EF.MigrationGenerationExtensions
 
 [![coverage report](https://git.custis.ru/pub/custis.netcore.ef.migrationgenerationextensions/badges/main/coverage.svg)](https://git.custis.ru/pub/custis.netcore.ef.migrationgenerationextensions/-/commits/main)
+[![Version](https://img.shields.io/nuget/vpre/custis.netcore.ef.migrationgenerationextensions.svg)](https://www.nuget.org/packages/CUSTIS.NetCore.EF.MigrationGenerationExtensions)
+[![Downloads](https://img.shields.io/nuget/dt/custis.netcore.ef.migrationgenerationextensions.svg)](https://www.nuget.org/packages/CUSTIS.NetCore.EF.MigrationGenerationExtensions)
 
 Adds views, synonyms, stored procedures, etc. (so-called SQL objects) to the EF model. Creates migrations, when those objects are changed.
 SQL objects are defined as raw SQL in C#-code or in embedded resources. They can be even generated at runtime.
