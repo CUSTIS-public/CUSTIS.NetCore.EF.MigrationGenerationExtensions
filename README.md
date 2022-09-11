@@ -7,10 +7,11 @@
 Adds views, synonyms, stored procedures, etc. (so-called SQL objects) to the EF model. Creates migrations, when those objects are changed.
 SQL objects are defined as raw SQL in C#-code or in embedded resources. They can be even generated at runtime.
 
-All EF Core model-tracking features are supported:
+All EF Core model-tracking and application features are supported:
 * When SQL-objects change, migrations are generated.
-* SQL-objects are applied on `DatabaseFacade.EnsureCreated`.
+* SQL-objects are applied on `Database.MigrateSafe()` or `DatabaseFacade.EnsureCreated()`.
 * Correct script is generated on `dotnet ef migrations script`.
+* Database is updated on `dotnet ef database update`.
 
 # How to use
 
