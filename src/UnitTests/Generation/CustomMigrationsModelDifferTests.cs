@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -26,17 +27,19 @@ namespace UnitTests.Generation
         {
             var relationalTypeMappingSource = Mock.Of<IRelationalTypeMappingSource>();
 
+            var context = new DbContext(new DbContextOptionsBuilder().UseInMemoryDatabase(nameof(CustomMigrationsModelDifferTests)).Options);
+
             _differ = new(
                 relationalTypeMappingSource, Mock.Of<IMigrationsAnnotationProvider>(),
-                Mock.Of<IChangeDetector>(),
-                Mock.Of<IUpdateAdapterFactory>(),
+                context.GetService<IChangeDetector>(),
+                context.GetService<IUpdateAdapterFactory>(),
                 new CommandBatchPreparerDependencies(Mock.Of<IModificationCommandBatchFactory>(),
                     Mock.Of<IParameterNameGeneratorFactory>(),
                     Mock.Of<IComparer<ModificationCommand>>(),
                     Mock.Of<IKeyValueIndexFactorySource>(),
-                    Mock.Of<ILoggingOptions>(),
-                    Mock.Of<IDiagnosticsLogger<DbLoggerCategory.Update>>(),
-                    Mock.Of<IDbContextOptions>()),
+                    context.GetService<ILoggingOptions>(),
+                    context.GetService<IDiagnosticsLogger<DbLoggerCategory.Update>>(),
+                    context.GetService<IDbContextOptions>()),
                 new[] { new SqlObjectsDiffer() });
         }
 
@@ -44,31 +47,36 @@ namespace UnitTests.Generation
         public void GetDifferences_CorrectOrder()
         {
             //Arrange
-            var view1 = new SqlObject("my_view_1", "create or replace ...");
+            var view0 = new SqlObject("my_view_0", "create or replace ...") { Order = 100 };
+            var view1 = new SqlObject("my_view_1", "create or replace ...") { Order = 120 };
             var view2 = new SqlObject("my_view_2", "create or replace ...");
 
-            var view2Updated = new SqlObject("my_view_2", "updated create or replace ...");
-            var view3 = new SqlObject("my_view_3", "create or replace ...");
+            var view2Updated = new SqlObject("my_view_2", "updated create or replace ...") { Order = 200 };
+            var view3 = new SqlObject("my_view_3", "create or replace ...") { Order = 180 };
 
             //Act
             var migrationOperations = _differ.GetDifferences(
-                ToModel(view1, view2),
+                ToModel(view0, view1, view2),
                 ToModel(view2Updated, view3));
 
             //Assert
             Assert.That(migrationOperations, Has.Exactly(4).Items);
+
+            // DROP operations - first, with reversed order
             Assert.That(
                 migrationOperations[0],
                 Is.TypeOf<DropSqlObjectOperation>().With
                     .Property(nameof(DropSqlObjectOperation.Name)).EqualTo("my_view_1"));
             Assert.That(
                 migrationOperations[1],
-                Is.TypeOf<CreateOrUpdateSqlObjectOperation>().With
-                    .Property(nameof(CreateOrUpdateSqlObjectOperation.Name)).EqualTo("my_view_1"));
+                Is.TypeOf<DropSqlObjectOperation>().With
+                    .Property(nameof(DropSqlObjectOperation.Name)).EqualTo("my_view_0"));
+
+            // CREATE or UPDATE ops - last, with direct order
             Assert.That(
                 migrationOperations[2],
                 Is.TypeOf<CreateOrUpdateSqlObjectOperation>().With
-                    .Property(nameof(CreateOrUpdateSqlObjectOperation.Name)).EqualTo("my_view_2"));
+                    .Property(nameof(CreateOrUpdateSqlObjectOperation.Name)).EqualTo("my_view_3"));
             Assert.That(
                 migrationOperations[3],
                 Is.TypeOf<CreateOrUpdateSqlObjectOperation>().With
@@ -77,7 +85,10 @@ namespace UnitTests.Generation
 
         private static IRelationalModel ToModel(params SqlObject[] objects)
         {
-            return Mock.Of<IRelationalModel>(m => m.Model[SqlObjectsModelExtensions.SqlObjectsData] == new List<SqlObject>(objects));
+            var model = new Model(new ConventionSet());
+            model[SqlObjectsModelExtensions.SqlObjectsData] = new List<SqlObject>(objects);
+
+            return Mock.Of<IRelationalModel>(x => x.Model == model);
         }
     }
 #pragma warning restore EF1001 // Internal EF Core API usage.

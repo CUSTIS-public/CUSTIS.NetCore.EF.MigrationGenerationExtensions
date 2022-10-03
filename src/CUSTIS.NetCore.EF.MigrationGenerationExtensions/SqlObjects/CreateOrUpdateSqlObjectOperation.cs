@@ -19,7 +19,7 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects
         /// <returns>A string that represents the current object.</returns>
         public override string ToString()
         {
-            return $"SqlObject [{Name}]";
+            return $"Create or update [{Name}]";
         }
     }
 }
