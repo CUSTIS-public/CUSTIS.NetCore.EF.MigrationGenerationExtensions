@@ -4,6 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration;
+using CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL;
+using Microsoft.EntityFrameworkCore;
 using TestDataAccessLayer;
 
 namespace TestEntryPoint
@@ -23,13 +25,15 @@ namespace TestEntryPoint
             services.AddRazorPages();
             services.AddDbContext<TestContext>(options =>
                                                  {
-                                                     options.AddDbContextServicesExtension();
+                                                     options.UseSqlObjects();
                                                  });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, TestContext context)
         {
+            context.Database.Migrate();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -12,36 +12,19 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
     public static class ConfigurationExtensions
     {
         /// <summary> Добавляет сервисы, используемые во внутреннем контейнере DbContext </summary>
-        public static void AddDbContextServices(this IServiceCollection services)
+        internal static void AddServices(this IServiceCollection services)
         {
             services.AddSingleton<ICustomSqlGenerator, CreateOrUpdateSqlObjectSqlGenerator>();
             services.AddSingleton<ICustomSqlGenerator, DropSqlObjectSqlGenerator>();
             services.AddSingleton<IModelDiffer, SqlObjectsDiffer>();
         }
 
-        /// <summary> Добавить <see cref="DbContextServicesExtension"/> </summary>
-        public static void AddDbContextServicesExtension(this IDbContextOptionsBuilderInfrastructure options)
-        {
-            options.AddOrUpdateExtension(new DbContextServicesExtension());
-        }
-
-        /// <summary> Добавить <see cref="DesignTimeServicesExtension"/> </summary>
-        public static DbContextOptions AddDesignTimeServicesExtension(this DbContextOptions options)
-        {
-            return options.WithExtension(new DesignTimeServicesExtension());
-        }
-
-        /// <summary> Добавить <see cref="DesignTimeServicesExtension"/> </summary>
-        public static DbContextOptions<T> AddDesignTimeServicesExtension<T>(this DbContextOptions<T> options)
-            where T : DbContext
-        {
-            return (DbContextOptions<T>)options.WithExtension(new DesignTimeServicesExtension());
-        }
-
         /// <summary> Replaces services necessary for SQL objects </summary>
         public static void UseCommonSqlObjects(this DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.ReplaceService<IMigrationsModelDiffer, CustomMigrationsModelDiffer>();
+
+            ((IDbContextOptionsBuilderInfrastructure)optionsBuilder).AddOrUpdateExtension(new SqlObjectsExtension());
         }
     }
 }

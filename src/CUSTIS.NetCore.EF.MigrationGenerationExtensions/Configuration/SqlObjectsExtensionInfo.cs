@@ -3,14 +3,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
 {
-    internal class DbContextServicesExtensionInfo : DbContextOptionsExtensionInfo
+    internal class SqlObjectsExtensionInfo : DbContextOptionsExtensionInfo
     {
         /// <summary>
         ///     Creates a new <see cref="T:Microsoft.EntityFrameworkCore.Infrastructure.DbContextOptionsExtensionInfo" /> instance containing
         ///     info/metadata for the given extension.
         /// </summary>
         /// <param name="extension"> The extension. </param>
-        public DbContextServicesExtensionInfo(IDbContextOptionsExtension extension) : base(extension)
+        public SqlObjectsExtensionInfo(IDbContextOptionsExtension extension) : base(extension)
         {
         }
 
@@ -44,6 +44,6 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
         ///     A message fragment for logging typically containing information about
         ///     any useful non-default options that have been configured.
         /// </summary>
-        public override string LogFragment => "DB context services";
+        public override string LogFragment => "Sql Objects Extension";
     }
 }

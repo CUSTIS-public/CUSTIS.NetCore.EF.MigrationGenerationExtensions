@@ -16,11 +16,11 @@ All EF Core model-tracking and application features are supported:
 # How to use
 
 * Configure runtime services
-  * Call `AddDbContextServicesExtension` and `UseSqlObjects` either in [`Startup.ConfigureServices.AddDbContext`](src/TestEntryPoint/Startup.cs) or in [`DbContext.OnConfiguring`](src/TestDataAccessLayer/TestContext.cs)
+  * Call `UseSqlObjects` either in [`Startup.ConfigureServices.AddDbContext`](src/TestEntryPoint/Startup.cs) or in [`DbContext.OnConfiguring`](src/TestDataAccessLayer/TestContext.cs)
 * Configure designtime services
   * Create an empty [`DbDesignTimeServices`](src/TestEntryPoint/DbDesignTimeServices.cs) in your entry point. The class should inherit from `CustomNpgsqlDesignTimeServices`
-  * Call `AddDesignTimeServicesExtension` and `UseSqlObjects` in your [`DesignTimeDbContextFactory`](src/TestDataAccessLayer/DesignTimeDbContextFactory.cs)
-    * If you call `AddDbContextServicesExtension` and `UseSqlObjects` in `DbContext.OnConfiguring` while configuring runtime services, then this step is not necessary
+  * Call `UseSqlObjects` in your [`DesignTimeDbContextFactory`](src/TestDataAccessLayer/DesignTimeDbContextFactory.cs)
+    * If you call `UseSqlObjects` in `DbContext.OnConfiguring` while configuring runtime services, then this step is not necessary
 * Add SqlObjects to your context in [`DbContext.OnModelCreating`](src/TestDataAccessLayer/TestContext.cs)
 * Generate migrations / scripts as usual
 
@@ -59,3 +59,6 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
   * `dotnet dotnet-ef migrations add MyMigr --context TestContext --project TestDataAccessLayer.csproj --startup-project ../TestEntryPoint/TestEntryPoint.csproj`
   * `dotnet dotnet-ef database update --context TestContext --project TestDataAccessLayer.csproj --startup-project ../TestEntryPoint/TestEntryPoint.csproj`
   * `dotnet dotnet-ef migrations script TestMigr Meetup1 --context TestContext --project TestDataAccessLayer.csproj --startup-project ../TestEntryPoint/TestEntryPoint.csproj`
+
+# Breaking changes
+When updating from 2.x to 3.x delete lines with `AddDbContextServicesExtension` and `AddDesignTimeServicesExtension` (all configuration is done now in `UseSqlObjects`).

@@ -33,7 +33,6 @@ namespace TestDataAccessLayer
 
             var cfg = builder.Build();
             optionsBuilder.UseNpgsql(cfg["conn"]);
-            optionsBuilder.UseSqlObjects();
         }
     }
 }

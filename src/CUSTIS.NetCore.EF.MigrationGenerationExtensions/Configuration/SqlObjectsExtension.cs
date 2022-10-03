@@ -4,12 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
 {
     /// <summary> Добавляет сервисы в ServiceProvider внутри DbContext</summary>
-    internal class DesignTimeServicesExtension : IDbContextOptionsExtension
+    internal class SqlObjectsExtension : IDbContextOptionsExtension
     {
         /// <summary> Добавляет сервисы в ServiceProvider внутри DbContext</summary>
         public void ApplyServices(IServiceCollection services)
         {
-            services.AddDbContextServices();
+            services.AddServices();
         }
 
         /// <summary>
@@ -23,6 +23,6 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
         }
 
         /// <summary>Information/metadata about the extension.</summary>
-        public DbContextOptionsExtensionInfo Info => new DesignTimeServicesExtensionInfo(this);
+        public DbContextOptionsExtensionInfo Info => new SqlObjectsExtensionInfo(this);
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration;
+using CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -13,9 +14,9 @@ namespace TestDataAccessLayer
 
             var builder = new DbContextOptionsBuilder<TestContext>();
 
-            var options = builder.Options.AddDesignTimeServicesExtension();
+            builder.UseSqlObjects();
 
-            return new TestContext(options);
+            return new TestContext(builder.Options);
         }
     }
 }
