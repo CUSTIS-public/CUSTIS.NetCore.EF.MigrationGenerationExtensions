@@ -12,7 +12,7 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL
         /// <inheritdoc />
         public override void ConfigureDesignTimeServices(IServiceCollection services)
         {
-            services.ReplaceBySingleton<IAnnotationCodeGenerator, CustomNpgsqlAnnotationCodeGenerator>();
+            ReplaceBySingleton<IAnnotationCodeGenerator, CustomNpgsqlAnnotationCodeGenerator>(services);
             base.ConfigureDesignTimeServices(services);
         }
     }

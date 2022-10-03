@@ -25,5 +25,14 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
             services.AddSingleton<ICustomMigrationOperationGenerator, CreateOrUpdateSqlObjectMigrationGenerator>();
             services.AddSingleton<ICustomMigrationOperationGenerator, DropSqlObjectMigrationGenerator>();
         }
+
+        /// <summary> Replaces an existing service by singleton </summary>
+        /// <remarks> Provides internal method to children </remarks>
+        protected static void ReplaceBySingleton<TService, TNewService>(IServiceCollection services)
+            where TService : class
+            where TNewService : class, TService
+        {
+            services.ReplaceBySingleton<TService, TNewService>();
+        }
     }
 }
