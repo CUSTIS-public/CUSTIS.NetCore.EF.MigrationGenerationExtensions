@@ -85,8 +85,10 @@ namespace UnitTests.Generation
 
         private static IRelationalModel ToModel(params SqlObject[] objects)
         {
-            var model = new Model(new ConventionSet());
-            model[SqlObjectsModelExtensions.SqlObjectsData] = new List<SqlObject>(objects);
+            var model = new Model(new ConventionSet())
+            {
+                [SqlObjectsModelExtensions.SqlObjectsData] = new List<SqlObject>(objects)
+            };
 
             return Mock.Of<IRelationalModel>(x => x.Model == model);
         }
