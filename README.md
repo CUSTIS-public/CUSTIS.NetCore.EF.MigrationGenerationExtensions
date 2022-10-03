@@ -15,14 +15,12 @@ All EF Core model-tracking and application features are supported:
 
 # How to use
 
-* Configure runtime services
-  * Call `UseSqlObjects` either in [`Startup.ConfigureServices.AddDbContext`](src/TestEntryPoint/Startup.cs) or in [`DbContext.OnConfiguring`](src/TestDataAccessLayer/TestContext.cs)
-* Configure designtime services
-  * Create an empty [`DbDesignTimeServices`](src/TestEntryPoint/DbDesignTimeServices.cs) in your entry point. The class should inherit from `CustomNpgsqlDesignTimeServices`
-  * Call `UseSqlObjects` in your [`DesignTimeDbContextFactory`](src/TestDataAccessLayer/DesignTimeDbContextFactory.cs)
-    * If you call `UseSqlObjects` in `DbContext.OnConfiguring` while configuring runtime services, then this step is not necessary
+* Call `UseSqlObjects`:
+    * either in [`Startup.ConfigureServices.AddDbContext`](src/TestEntryPoint/Startup.cs) and [`DesignTimeDbContextFactory`](src/TestDataAccessLayer/DesignTimeDbContextFactory.cs)
+    * or in [`DbContext.OnConfiguring`](src/TestDataAccessLayer/TestContext.cs)
+* Create an empty [`DbDesignTimeServices`](src/TestEntryPoint/DbDesignTimeServices.cs) in your entry point. The class should inherit from `CustomNpgsqlDesignTimeServices`
 * Add SqlObjects to your context in [`DbContext.OnModelCreating`](src/TestDataAccessLayer/TestContext.cs)
-* Generate migrations / scripts as usual
+* Generate migrations / scripts / update DB as usual
 
 ## Ways to add SqlObjects to the model
 
