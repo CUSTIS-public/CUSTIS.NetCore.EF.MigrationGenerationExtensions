@@ -49,8 +49,8 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Generation
         {
             operations.DivideByType<MigrationOperation, CreateOrUpdateSqlObjectOperation, DropSqlObjectOperation>(out var sqlOps, out var dropOps, out var otherOperations);
 
-            return base.Sort(otherOperations, diffContext) // create schema
-                    .Concat(dropOps.OrderSqlObjects()) // drop objects
+            return dropOps.OrderSqlObjects() // drop objects
+                    .Concat(base.Sort(otherOperations, diffContext)) // drop / create tables, etc.
                     .Concat(sqlOps.OrderSqlObjects()) // create or update objects
                     .ToList();
         }

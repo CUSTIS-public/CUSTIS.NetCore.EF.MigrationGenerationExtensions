@@ -58,3 +58,4 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 4. Use the following commands to add migrations / update DB
   * `dotnet dotnet-ef migrations add MyMigr --context TestContext --project TestDataAccessLayer.csproj --startup-project ../TestEntryPoint/TestEntryPoint.csproj`
   * `dotnet dotnet-ef database update --context TestContext --project TestDataAccessLayer.csproj --startup-project ../TestEntryPoint/TestEntryPoint.csproj`
+  * `dotnet dotnet-ef migrations script TestMigr Meetup1 --context TestContext --project TestDataAccessLayer.csproj --startup-project ../TestEntryPoint/TestEntryPoint.csproj`
