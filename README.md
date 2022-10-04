@@ -9,7 +9,7 @@ SQL objects are defined as raw SQL in C#-code or in embedded resources. They can
 
 All EF Core model-tracking and application features are supported:
 * When SQL-objects change, migrations are generated.
-* SQL-objects are applied on `Database.MigrateSafe()` or `DatabaseFacade.EnsureCreated()`.
+* SQL-objects are applied on `Database.Migrate()` or `Database.EnsureCreated()`.
 * Correct script is generated on `dotnet ef migrations script`.
 * Database is updated on `dotnet ef database update`.
 
