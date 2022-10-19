@@ -18,7 +18,7 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL
 
 #pragma warning disable EF1001 // Internal EF Core API usage.
         /// <summary> Генератор SQL кода </summary>
-        public CustomNpgsqlMigrationsSqlGenerator(MigrationsSqlGeneratorDependencies dependencies, INpgsqlOptions npgsqlOptions,
+        public CustomNpgsqlMigrationsSqlGenerator(MigrationsSqlGeneratorDependencies dependencies, INpgsqlSingletonOptions npgsqlOptions,
             IEnumerable<ICustomSqlGenerator> sqlGenerators) : base(
             dependencies, npgsqlOptions)
 #pragma warning restore EF1001 // Internal EF Core API usage.
@@ -29,7 +29,7 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL
         /// <inheritdoc />
         protected override void Generate(
             MigrationOperation operation,
-            IModel model,
+            IModel? model,
             MigrationCommandListBuilder builder)
         {
             if (operation is CustomMigrationOperation customOp && _generators.ContainsKey(operation.GetType()))

@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NUnit.Framework;
 
+#nullable disable
+
 namespace Custom.DataAccess
 {
     [DbContext(typeof(TestContext))]

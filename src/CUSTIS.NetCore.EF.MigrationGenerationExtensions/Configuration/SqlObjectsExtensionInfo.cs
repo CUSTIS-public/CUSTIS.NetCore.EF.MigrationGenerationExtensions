@@ -19,7 +19,7 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
         ///     to be needed. Most extensions do not have any such options and should return zero.
         /// </summary>
         /// <returns> A hash over options that require a new service provider when changed. </returns>
-        public override long GetServiceProviderHashCode()
+        public override int GetServiceProviderHashCode()
         {
             return 0;
         }
@@ -33,6 +33,21 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Configuration
         /// <param name="debugInfo"> The dictionary to populate. </param>
         public override void PopulateDebugInfo(IDictionary<string, string> debugInfo)
         {
+        }
+
+        /// <summary>
+        ///     Returns a value indicating whether all of the options used in <see cref="GetServiceProviderHashCode" />
+        ///     are the same as in the given extension.
+        /// </summary>
+        /// <remarks>
+        ///     See <see href="https://aka.ms/efcore-docs-providers">Implementation of database providers and extensions</see>
+        ///     for more information.
+        /// </remarks>
+        /// <param name="other">The other extension.</param>
+        /// <returns>A value indicating whether all of the options that require a new service provider are the same.</returns>
+        public override bool ShouldUseSameServiceProvider(DbContextOptionsExtensionInfo other)
+        {
+            return other is SqlObjectsExtensionInfo;
         }
 
         /// <summary>

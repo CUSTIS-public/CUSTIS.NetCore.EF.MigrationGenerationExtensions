@@ -1,14 +1,12 @@
 using System.Collections.Generic;
 using ApprovalTests;
 using ApprovalTests.Reporters;
-using CUSTIS.NetCore.EF.MigrationGenerationExtensions.Generation;
 using CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL;
 using CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects;
 using Microsoft.EntityFrameworkCore.Design;
-using Microsoft.EntityFrameworkCore.Design.Internal;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.EntityFrameworkCore.Migrations.Design;
+using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Moq;
@@ -33,6 +31,8 @@ namespace UnitTests.Generation
             new CustomNpgsqlDesignTimeServices().ConfigureDesignTimeServices(services);
             services.AddSingleton(_model);
             services.AddSingleton(relationalTypeMappingSource);
+            services.AddSingleton<AnnotationCodeGeneratorDependencies>();
+            services.AddSingleton(Mock.Of<ITypeMappingSource>());
 
             using var serviceScope = services.BuildServiceProvider().CreateScope();
             _generator = serviceScope.ServiceProvider.GetRequiredService<IMigrationsCodeGenerator>();
@@ -75,7 +75,7 @@ namespace UnitTests.Generation
             var sqlObj2 = new SqlObject("v_view_2", "create v_view_2 as select") { Order = 10 };
             var sqlObj3 = new SqlObject("v_view_3", "create v_view_3 as select") { Order = 20 };
 
-            Mock.Get(_model).Setup(m => m[SqlObjectsModelExtensions.SqlObjectsData]).Returns(new List<SqlObject> { sqlObj1, sqlObj2, sqlObj3,  });
+            Mock.Get(_model).Setup(m => m[SqlObjectsModelExtensions.SqlObjectsData]).Returns(new List<SqlObject> { sqlObj1, sqlObj2, sqlObj3 });
 
             //Act
             var snapshot = _generator.GenerateSnapshot("Custom.DataAccess", typeof(TestContext),

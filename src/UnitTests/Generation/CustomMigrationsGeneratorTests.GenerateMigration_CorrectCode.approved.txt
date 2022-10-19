@@ -1,6 +1,8 @@
 ﻿using CUSTIS.NetCore.EF.MigrationGenerationExtensions.SqlObjects;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Custom.DataAccess
 {
     public partial class TestMigration : Migration
