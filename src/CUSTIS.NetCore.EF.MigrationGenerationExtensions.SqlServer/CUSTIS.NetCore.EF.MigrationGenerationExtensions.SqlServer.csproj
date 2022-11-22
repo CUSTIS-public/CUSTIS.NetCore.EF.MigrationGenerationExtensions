@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+      <Description>Adds views, synonyms, stored procedures, etc. (so-called SQL objects) to the EF model. Creates migrations, when those objects are changed.
+SQL objects are defined as raw SQL in C#-code or in embedded resources. They can be even generated at runtime. 
+For more information refer to https://github.com/CUSTIS-public/CUSTIS.NetCore.EF.MigrationGenerationExtensions</Description>
+  </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.10" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+    <ProjectReference Include="..\CUSTIS.NetCore.EF.MigrationGenerationExtensions\CUSTIS.NetCore.EF.MigrationGenerationExtensions.csproj" />
+  </ItemGroup>
+
+</Project>
