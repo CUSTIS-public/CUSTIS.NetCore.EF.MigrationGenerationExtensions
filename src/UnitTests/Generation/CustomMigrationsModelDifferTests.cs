@@ -30,13 +30,13 @@ namespace UnitTests.Generation
             var context = new DbContext(new DbContextOptionsBuilder().UseInMemoryDatabase(nameof(CustomMigrationsModelDifferTests)).Options);
 
             _differ = new(
-                relationalTypeMappingSource, Mock.Of<IMigrationsAnnotationProvider>(),
-                context.GetService<IChangeDetector>(),
-                context.GetService<IUpdateAdapterFactory>(),
-                new CommandBatchPreparerDependencies(Mock.Of<IModificationCommandBatchFactory>(),
+                relationalTypeMappingSource,
+                Mock.Of<IMigrationsAnnotationProvider>(),
+                Mock.Of<IRowIdentityMapFactory>(),
+                new CommandBatchPreparerDependencies(
+                    Mock.Of<IModificationCommandBatchFactory>(),
                     Mock.Of<IParameterNameGeneratorFactory>(),
                     Mock.Of<IComparer<IReadOnlyModificationCommand>>(),
-                    Mock.Of<IKeyValueIndexFactorySource>(),
                     Mock.Of<IModificationCommandFactory>(),
                     context.GetService<ILoggingOptions>(),
                     context.GetService<IDiagnosticsLogger<DbLoggerCategory.Update>>(),
