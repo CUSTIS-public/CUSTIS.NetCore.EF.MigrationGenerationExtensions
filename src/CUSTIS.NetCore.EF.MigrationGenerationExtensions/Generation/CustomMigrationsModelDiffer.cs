@@ -25,14 +25,12 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Generation
         public CustomMigrationsModelDiffer(
             IRelationalTypeMappingSource typeMappingSource,
             IMigrationsAnnotationProvider migrationsAnnotations,
-            IChangeDetector changeDetector,
-            IUpdateAdapterFactory updateAdapterFactory,
+            IRowIdentityMapFactory rowIdentityMapFactory,
             CommandBatchPreparerDependencies commandBatchPreparerDependencies,
             IEnumerable<IModelDiffer> differs) : base(
             typeMappingSource,
             migrationsAnnotations,
-            changeDetector,
-            updateAdapterFactory,
+            rowIdentityMapFactory,
             commandBatchPreparerDependencies)
         {
             _differs = differs.ToList();

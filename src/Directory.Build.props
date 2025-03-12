@@ -22,7 +22,7 @@
         <SolutionDirectory>$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildProjectDirectory), CUSTIS.NetCore.EF.MigrationGenerationExtensions.sln))\</SolutionDirectory>
     </PropertyGroup>
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <CodeAnalysisRuleSet>$(SolutionDirectory)\CodeAnalysis\StyleCop.ruleset</CodeAnalysisRuleSet>

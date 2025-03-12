@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Custom.DataAccess
 {
+    /// <inheritdoc />
     public partial class TestMigration : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameTable(
@@ -28,6 +30,7 @@ namespace Custom.DataAccess
                 newName: "T_NEW_2");
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameTable(
