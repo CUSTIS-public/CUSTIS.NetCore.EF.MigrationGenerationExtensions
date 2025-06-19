@@ -1,43 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <IsPackable>false</IsPackable>
-    </PropertyGroup>
-
-    <PropertyGroup>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <WarningsAsErrors />
-        <NoWarn>1591</NoWarn>
-        <UserSecretsId>167cac3d-577d-4c68-83d8-55cc9162b0f1</UserSecretsId>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <None Remove="Sql\v_view.sql" />
-      <None Remove="Sql\v_view_2.sql" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Content Include=".config\dotnet-tools.json" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <EmbeddedResource Include="Sql\v_view_2.sql" />
-      <EmbeddedResource Include="Sql\v_view.sql" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.10" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.10" />
-      <PackageReference Include="Microsoft.Extensions.Configuration" Version="6.0.1" />
-      <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="6.0.1" />
-      <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.7" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL.csproj" />
-    </ItemGroup>
-
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <NoWarn>1591</NoWarn>
+    <UserSecretsId>167cac3d-577d-4c68-83d8-55cc9162b0f1</UserSecretsId>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="Sql\v_view.sql" />
+    <None Remove="Sql\v_view_2.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".config\dotnet-tools.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Sql\v_view_2.sql" />
+    <EmbeddedResource Include="Sql\v_view.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL.csproj" />
+  </ItemGroup>
 </Project>

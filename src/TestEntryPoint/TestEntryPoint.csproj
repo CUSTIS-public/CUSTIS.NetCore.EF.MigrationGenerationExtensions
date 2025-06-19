@@ -1,25 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-
-    <PropertyGroup>
-        <IsPackable>false</IsPackable>
-    </PropertyGroup>
-
-    <PropertyGroup>
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <WarningsAsErrors />
-        <NoWarn>1591</NoWarn>
-    </PropertyGroup>
-
-    <ItemGroup>
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.10">
-        <PrivateAssets>all</PrivateAssets>
-        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      </PackageReference>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL.csproj" />
-      <ProjectReference Include="..\TestDataAccessLayer\TestDataAccessLayer.csproj" />
-    </ItemGroup>
-    
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <NoWarn>1591</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL.csproj" />
+    <ProjectReference Include="..\TestDataAccessLayer\TestDataAccessLayer.csproj" />
+  </ItemGroup>
 </Project>
