@@ -31,12 +31,10 @@ namespace UnitTests.Generation
 
             _differ = new(
                 relationalTypeMappingSource, Mock.Of<IMigrationsAnnotationProvider>(),
-                context.GetService<IChangeDetector>(),
-                context.GetService<IUpdateAdapterFactory>(),
+                Mock.Of<IRowIdentityMapFactory>(),
                 new CommandBatchPreparerDependencies(Mock.Of<IModificationCommandBatchFactory>(),
                     Mock.Of<IParameterNameGeneratorFactory>(),
                     Mock.Of<IComparer<IReadOnlyModificationCommand>>(),
-                    Mock.Of<IKeyValueIndexFactorySource>(),
                     Mock.Of<IModificationCommandFactory>(),
                     context.GetService<ILoggingOptions>(),
                     context.GetService<IDiagnosticsLogger<DbLoggerCategory.Update>>(),

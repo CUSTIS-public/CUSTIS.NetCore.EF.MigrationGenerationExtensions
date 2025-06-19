@@ -24,15 +24,13 @@ namespace CUSTIS.NetCore.EF.MigrationGenerationExtensions.Generation
         /// <summary> Calculates the difference between source and target models </summary>
         public CustomMigrationsModelDiffer(
             IRelationalTypeMappingSource typeMappingSource,
-            IMigrationsAnnotationProvider migrationsAnnotations,
-            IChangeDetector changeDetector,
-            IUpdateAdapterFactory updateAdapterFactory,
+            IMigrationsAnnotationProvider migrationsAnnotationProvider,
+            IRowIdentityMapFactory rowIdentityMapFactory,
             CommandBatchPreparerDependencies commandBatchPreparerDependencies,
             IEnumerable<IModelDiffer> differs) : base(
             typeMappingSource,
-            migrationsAnnotations,
-            changeDetector,
-            updateAdapterFactory,
+            migrationsAnnotationProvider,
+            rowIdentityMapFactory,
             commandBatchPreparerDependencies)
         {
             _differs = differs.ToList();

@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31829.152
@@ -14,9 +14,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{1C0480
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL", "CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL\CUSTIS.NetCore.EF.MigrationGenerationExtensions.PostgreSQL.csproj", "{907E5D6B-DB59-4285-97E3-499F3CB0722F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestEntryPoint", "TestEntryPoint\TestEntryPoint.csproj", "{10A0A624-ED5A-414C-BCB7-97AB31D41C53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestEntryPoint", "TestEntryPoint\TestEntryPoint.csproj", "{10A0A624-ED5A-414C-BCB7-97AB31D41C53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDataAccessLayer", "TestDataAccessLayer\TestDataAccessLayer.csproj", "{D408BA8B-B0F4-4E4E-BF85-5895FACCE332}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestDataAccessLayer", "TestDataAccessLayer\TestDataAccessLayer.csproj", "{D408BA8B-B0F4-4E4E-BF85-5895FACCE332}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "UnitTests\UnitTests.csproj", "{C8004252-7BF1-4FDC-9E87-043D118EA93B}"
 EndProject
